@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRAkey - Página Inicial</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <img src="imagem/logo.png" alt="Logo" class="logo">
+        <div class="logo-menu-container">
+            <img src="imagem/logo3.png" alt="Logo" class="logo3">
+            <nav>
+                <ul>
+                    <li><a href="sobre.html" onmouseover="falar('Sobre')">Sobre</a></li>
+                    <li><a href="serviços.html" onmouseover="falar('Nossas tecnologias')">Nossas tecnologias</a></li>
+                    <li><a href="login1.html" onmouseover="falar('Login')">Login</a></li>    
+                    <li><a href="contato.html" onmouseover="falar('Contato')">Contato</a></li>
+                </ul>
+            </nav>  
+        </div>
+    </header>
+    <footer>
+        <p>TRAkey achados & perdidos &copy; 2024 | <a href="tel:+551199991656">(11)9999-1656</a></p>
+    </footer>
+    <script>
+        function falar(texto) {
+            var audio = new SpeechSynthesisUtterance();
+            audio.text = texto;
+            speechSynthesis.speak(audio);
+        }
+    </script>
+</body>
+</html>

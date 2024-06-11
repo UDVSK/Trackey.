@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRAkey - Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .toggle-button, .increase-font-button {
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #010406;
+            color: #fdd805;
+            border: none;
+            cursor: pointer;
+        }   
+        .toggle-button.active {
+            background-color: #28a745;
+        }
+    </style>
+</head> 
+<body>
+    <header>
+        <div class="logo-menu-container">
+            <img src="imagem/logo.png" alt="Logo" class="logo1">
+            <img src="imagem/logo3.png" alt="Logo" class="logo3">
+            <nav>
+                <ul>
+                    <li><a href="index.html" onmouseover="falar('início')">Início</a></li>
+                    <li><a href="sobre.html" onmouseover="falar('Sobre')">Sobre</a></li>
+                    <li><a href="serviços.html" onmouseover="falar('Nossas tecnologias')">Nossas tecnologias</a></li>
+                    <li><a href="login1.html" onmouseover="falar('Login')">Login</a></li>    
+                    <li><a href="contato.html" onmouseover="falar('Contato')">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="login-container">
+            <div class="tab">
+                <button class="tablinks" onclick="openTab(event, 'Usuario')" onmouseover="falar('aba login usuário')">Usuário</button>
+                <button class="tablinks" onclick="openTab(event, 'Admin')" onmouseover="falar('aba login administrativo')">Admin</button>
+            </div>
+
+            <div id="Usuario" class="tabcontent">
+                <h2>Login do Usuário:</h2>
+                <form>
+                    <label for="user_email">Email</label>
+                    <input type="email" id="user_email" onmouseover="falar('campo para colocar o email')" required>
+                    <label for="user_password">Senha</label>
+                    <input type="password" id="user_password" onmouseover="falar('campo para colocar a senha')" required>
+                    <input type="button" onclick="autenticarUsuario()" value="Entrar" onmouseover="falar('Botão para entrar')">
+                    <input type="button" onclick="window.location.href='qr.html'" value="Entrar com QR code" onmouseover="falar('Botão para entrar com QR code')">
+                </form>
+            </div>
+
+            <div id="Admin" class="tabcontent">
+                <h2>Login Administração:</h2>
+                <form>
+                    <label for="admin_email">Email</label>
+                    <input type="email" id="admin_email" onmouseover="falar('campo para colocar o email')" required>
+                    <label for="admin_password">Senha</label>
+                    <input type="password" id="admin_password" onmouseover="falar('caampo para colocar a senha')" required>
+                    <input type="button" onclick="autenticarAdmin()" value="Entrar" onmouseover="falar('Botão para entrar')">
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <h2>Acessibilidade:</h2>
+        <button class="toggle-button" id="toggleFala" onclick="toggleFala()">Ativar narração.</button>
+        <button class="increase-font-button" onclick="increaseFontSize()">Aumentar Tamanho da fonte do texto.</button>
+        <p>TRAkey achados & perdidos &copy; 2024 | <a href="tel:+551199991656">(11) 9999-1656</a></p>
+    </footer>
+    <script>
+        var falaAtivada = false;
+
+        function toggleFala() {
+            falaAtivada = !falaAtivada;
+            var toggleButton = document.getElementById('toggleFala');
+            if (falaAtivada) {
+                toggleButton.textContent = 'Desativar Fala';
+                toggleButton.classList.add('active');
+            } else {
+                toggleButton.textContent = 'Ativar Fala';
+                toggleButton.classList.remove('active');
+            }
+        }
+
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        document.getElementsByClassName('tablinks')[0].click();
+
+        function autenticarUsuario() {
+            var email = document.getElementById('user_email').value;
+            var senha = document.getElementById('user_password').value;
+            var emailCorreto = 'trakey@fatec.sp.gov.br';
+            var senhaCorreta = 'senha_usuario'; 
+
+            if (email === emailCorreto && senha === senhaCorreta) {
+                window.location.href = 'login2.html'; 
+            } else {
+                falar('Email ou senha incorretos para usuário.');
+                alert('Email ou senha incorretos para usuário.');
+            }
+        }
+
+        function autenticarAdmin() {
+            var email = document.getElementById('admin_email').value;
+            var senha = document.getElementById('admin_password').value;
+            var emailCorreto = 'trakey@fatec.sp.gov.br';
+            var senhaCorreta = 'senha_admin'; 
+
+            if (email === emailCorreto && senha === senhaCorreta) {
+                window.location.href = 'login.html';
+            } else {
+                falar('Email ou senha incorretos para administrador.');
+                alert('Email ou senha incorretos para administrador.');
+            }
+        }
+
+        function falar(texto) {
+            if (falaAtivada) {
+                var audio = new SpeechSynthesisUtterance();
+                audio.text = texto;
+                speechSynthesis.speak(audio);
+            }
+        }
+
+        function increaseFontSize() {
+            var elements = document.querySelectorAll('body, body *');
+            for (var i = 0; i < elements.length; i++) {
+                var style = window.getComputedStyle(elements[i], null).getPropertyValue('font-size');
+                var currentSize = parseFloat(style);
+                elements[i].style.fontSize = (currentSize + 2) + 'px';
+            }
+        }
+    </script>
+</body>
+</html>
