@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRAckey - Usuário</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo-menu-container">
+            <img src="imagem/logo.png" alt="Logo" class="logo1">
+            <img src="imagem/logo3.png" alt="Logo" class="logo3">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                    <li><a href="serviços.html">Nossas tecnologias</a></li>
+                    <li><a href="login1.html">Login</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main> 
+        <button id="showModal">Mostrar mapa  das salas</button>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <img src="imagem/mapa.jpg" alt="Logo" class="mapa">
+            </div>
+        </div>
+        <form id="item-form">
+        </form>
+        <input type="text" id="search-input" placeholder="Pesquisar por nome do objeto">
+        <button id="search-button">Pesquisar</button>
+        <ul id="item-list"></ul>
+    </main>
+    <footer>
+        <p>TRAkey achados & perdidos &copy; 2024 | <a href="tel:+551199991656">(11)9999-1656</a></p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html> 
